@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 @Component({
     selector: "app-welcome",
     template: `
-        <h1>Wellcome to Session Poker</h1>
+        <h1>Wellcome to Planning Poker</h1>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

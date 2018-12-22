@@ -7,7 +7,7 @@ import { AppComponent } from "./app.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { SessionComponent } from "./session/session.component";
 import { TicketComponent } from './ticket/ticket.component';
-import { VoteButtonComponent } from './Ticket/vote-button/vote-button.component';
+import { VoteButtonComponent } from './ticket/vote-button/vote-button.component';
 
 @NgModule({
     declarations: [AppComponent, WelcomeComponent, SessionComponent, TicketComponent, VoteButtonComponent],
