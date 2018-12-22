@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { SessionModel } from "./session.model";
 import { TicketModel } from "../ticket/ticket.model";
+import * as io from "socket.io-client";
 
 @Component({
     selector: "app-session",
@@ -104,8 +105,11 @@ export class SessionComponent implements OnInit {
         return Boolean(this.model.currentTicket);
     }
 
+    socket: SocketIOClient.Socket;
+
     ngOnInit() {
         // Register with server, create new room if it does not yet exist
+        this.socket = io();
     }
 
     public model: SessionModel;
