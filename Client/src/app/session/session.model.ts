@@ -1,12 +1,21 @@
 import { TicketModel } from "../ticket/ticket.model";
 
 export class SessionModel {
-    numberOfUsers: number;
+    numberOfUsers = 0;
     name: string;
     tickets: TicketModel[] = [];
     currentTicket: TicketModel;
-    IsInitialCreator: boolean;
-    IsObserver: boolean;
+    IsInitialCreator = false;
+    IsObserver = false;
+
+    public addNewTicket(ticket: TicketModel): void {
+        this.tickets.push(ticket);
+        this.currentTicket = ticket;
+    }
+
+    public hasTickets(): boolean {
+        return Boolean(this.currentTicket);
+    }
 
     public goToPreviousTicket(): any {
         this.currentIndex = this.currentIndex === 0 ? 0 : this.currentIndex - 1;

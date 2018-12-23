@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { SessionModel } from "./session.model";
 import { TicketModel } from "../ticket/ticket.model";
-import * as io from "socket.io-client";
+import { BackendService } from "../backend.service";
 
 @Component({
     selector: "app-session",
@@ -14,7 +14,7 @@ import * as io from "socket.io-client";
             </span>
         </div>
 
-        <div *ngIf="!hasTickets()">
+        <div *ngIf="!model.hasTickets()">
             <form (submit)="createNewTicket(nextTicketName)">
                 <label for="ticketName">Create the first ticket</label>
                 <input
@@ -32,7 +32,7 @@ import * as io from "socket.io-client";
                 />
             </form>
         </div>
-        <div *ngIf="hasTickets()">
+        <div *ngIf="model.hasTickets()">
             <app-ticket
                 [ticket]="model.currentTicket"
                 [numberOfUsers]="this.model.numberOfUsers"
@@ -91,37 +91,28 @@ import * as io from "socket.io-client";
     ]
 })
 export class SessionComponent implements OnInit {
-    constructor(public route: ActivatedRoute) {
-        this.model = new SessionModel();
-        this.model.numberOfUsers = 8;
+    public model = new SessionModel();
+    public nextTicketName = "";
+
+    constructor(
+        public route: ActivatedRoute,
+        private backendService: BackendService
+    ) {
         this.route.url.subscribe(urlParameters => {
             this.model.name = urlParameters[0].path;
         });
     }
 
-    public nextTicketName = "";
-
-    public hasTickets(): boolean {
-        return Boolean(this.model.currentTicket);
-    }
-
-    socket: SocketIOClient.Socket;
-
     ngOnInit() {
-        // Register with server, create new room if it does not yet exist
-        this.socket = io();
+        this.model.numberOfUsers = 1;
+        this.backendService.linkBackendToModel(this.model);
     }
-
-    public model: SessionModel;
 
     public createNewTicket(name: string): void {
         if (!name) {
             return;
         }
-        var ticket = new TicketModel();
-        ticket.name = name;
-        this.model.tickets.push(ticket);
-        this.model.currentTicket = ticket;
+        this.model.addNewTicket(new TicketModel(name));
         this.nextTicketName = "";
     }
 }

@@ -1,8 +1,8 @@
 export class TicketModel {
+    constructor(public name: string) {}
     hasVoted: boolean;
     votes: number[] = [];
     voteFinished: boolean;
-    name: string;
     yourVote: number;
 
     public getAverageVote(): number {
