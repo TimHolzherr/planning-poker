@@ -9,6 +9,7 @@ import {
     SendModelMessage
 } from "./models/messages.model";
 import { TicketModel } from "./models/ticket.model";
+import { environment } from "src/environments/environment";
 
 const messageToOthers = "message to others";
 const sendModel = "send model";
@@ -22,7 +23,8 @@ export class BackendService {
 
     public linkBackendToModel(model: SessionModel): void {
         this.model = model;
-        this.socket = io(`http://localhost:3000/`, {
+        environment.backendServer;
+        this.socket = io(environment.backendServer, {
             query: `room=${model.name}`
         });
 
