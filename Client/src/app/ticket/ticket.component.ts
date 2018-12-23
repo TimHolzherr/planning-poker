@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { TicketModel } from "./ticket.model";
+import { TicketModel } from "../models/ticket.model";
+import { BackendService } from "../backend.service";
 
 @Component({
     selector: "app-ticket",
@@ -40,7 +41,7 @@ import { TicketModel } from "./ticket.model";
     ]
 })
 export class TicketComponent implements OnInit {
-    constructor() {}
+    constructor(private backendService: BackendService) {}
 
     public complexityPoints = [1, 2, 3, 5, 8, 13, 20];
 
@@ -52,9 +53,11 @@ export class TicketComponent implements OnInit {
     @Input()
     public numberOfUsers: number;
 
-    public vote(number: number): void {
-        this.ticket.yourVote = number;
-        this.ticket.votes.push(number);
-        this.ticket.hasVoted = true;
+    public vote(vote: number): void {
+        this.ticket.voteByMe(vote, this.numberOfUsers);
+        this.backendService.vote({
+            ticketName: this.ticket.name,
+            vote
+        });
     }
 }

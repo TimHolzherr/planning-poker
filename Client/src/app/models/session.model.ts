@@ -1,4 +1,5 @@
-import { TicketModel } from "../ticket/ticket.model";
+import { TicketModel } from "./ticket.model";
+import { TicketDto, SessionDto } from "./messages.model";
 
 export class SessionModel {
     numberOfUsers = 0;
@@ -15,6 +16,34 @@ export class SessionModel {
 
     public hasTickets(): boolean {
         return Boolean(this.currentTicket);
+    }
+
+    public setSessionFromDto(dto: SessionDto): void {
+        this.numberOfUsers = dto.numberOfUsers;
+        this.setTickets(dto.tickets);
+    }
+
+    public asDto(): SessionDto {
+        return {
+            numberOfUsers: this.numberOfUsers,
+            tickets: this.tickets.map(t => {
+                return {
+                    name: t.name,
+                    votes: t.votes,
+                    voteFinished: t.voteFinished
+                };
+            })
+        };
+    }
+
+    private setTickets(tickets: TicketDto[]) {
+        this.tickets = tickets.map(dto => {
+            var newTicket = new TicketModel(dto.name);
+            newTicket.voteFinished = dto.voteFinished;
+            newTicket.votes = dto.votes;
+            return newTicket;
+        });
+        this.goToLastTicket();
     }
 
     public goToPreviousTicket(): any {

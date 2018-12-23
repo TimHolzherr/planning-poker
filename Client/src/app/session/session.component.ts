@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { SessionModel } from "./session.model";
-import { TicketModel } from "../ticket/ticket.model";
+import { SessionModel } from "../models/session.model";
+import { TicketModel } from "../models/ticket.model";
 import { BackendService } from "../backend.service";
 
 @Component({
@@ -12,6 +12,10 @@ import { BackendService } from "../backend.service";
                 {{ model.numberOfUsers }} people joined the session for
                 <strong>{{ this.model.name }}</strong>
             </span>
+            <span>
+                invite other to join at
+                <a [href]="currentUrl">{{ currentUrl }}</a></span
+            >
         </div>
 
         <div *ngIf="!model.hasTickets()">
@@ -93,6 +97,7 @@ import { BackendService } from "../backend.service";
 export class SessionComponent implements OnInit {
     public model = new SessionModel();
     public nextTicketName = "";
+    public currentUrl: string;
 
     constructor(
         public route: ActivatedRoute,
@@ -101,6 +106,7 @@ export class SessionComponent implements OnInit {
         this.route.url.subscribe(urlParameters => {
             this.model.name = urlParameters[0].path;
         });
+        this.currentUrl = window.location.href;
     }
 
     ngOnInit() {
@@ -114,5 +120,6 @@ export class SessionComponent implements OnInit {
         }
         this.model.addNewTicket(new TicketModel(name));
         this.nextTicketName = "";
+        this.backendService.addNewTicket({ ticketName: name });
     }
 }
