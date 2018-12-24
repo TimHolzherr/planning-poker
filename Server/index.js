@@ -3,13 +3,14 @@ var app = express();
 var http = require("http").Server(app);
 var path = require("path");
 var io = require("socket.io")(http);
+var expressStaticGzip = require("express-static-gzip");
 const distPath = path.join(__dirname, "/dist");
 
 // Serve static files
-app.use(express.static(distPath));
+app.use(expressStaticGzip(distPath));
 // For client side routing
 app.get("/*", (req, res) => {
-    res.sendFile(distPath + "/index.html");
+    res.sendFile(distPath + "/index.html.gz");
 });
 
 // WebSockets
