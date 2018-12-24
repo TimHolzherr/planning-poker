@@ -16,16 +16,13 @@ app.get("/*", (req, res) => {
 io.on("connection", function(socket) {
     const room = socket.handshake.query.room;
     socket.join(room);
-    console.log("a user connected to ", room);
     socket.to(room).broadcast.emit("user connected");
 
     socket.on("message to others", data => {
-        console.log("message to others", data);
         socket.to(room).broadcast.emit("message to others", data);
     });
 
     socket.on("send model", data => {
-        console.log("send model", data);
         socket.to(data.id).emit("send model", data);
     });
 
@@ -41,6 +38,4 @@ io.on("connection", function(socket) {
     }
 });
 
-http.listen(3000, function() {
-    console.log("listening on *:3000");
-});
+http.listen(process.env.PORT || 3000, function() {});
