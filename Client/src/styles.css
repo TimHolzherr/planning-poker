@@ -1,9 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
-* {
+/* * {
     margin: 8px;
     padding: 8px;
 }
 
 app-vote-buttion {
     display: inline-block;
+} */
+
+@media screen and (min-width: 350px) {
+    body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+    #wrapper {
+        flex: 1;
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+
+    .fill-page {
+        height: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.footer {
+    background-color: #fafafa;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+@media screen and (min-width: 1472px) {
+    .container {
+        max-width: 1152px;
+    }
 }
