@@ -3,20 +3,16 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 @Component({
     selector: "app-vote-button",
     template: `
-        <div class="column is-3-tablet is-4-mobile">
+        <div *ngIf="complexityPoints" class="column is-3-tablet is-4-mobile">
             <input
                 type="button"
-                *ngIf="complexityPoints"
                 class="button is-fullwidth is-warning"
                 (click)="vote.emit(complexityPoints)"
                 [value]="complexityPoints"
             />
-
-            <form
-                *ngIf="!complexityPoints"
-                class="is-fullwidth"
-                (submit)="customValueVote()"
-            >
+        </div>
+        <div *ngIf="!complexityPoints" class="column is-3-tablet is-8-mobile">
+            <form class="is-fullwidth" (submit)="customValueVote()">
                 <input
                     name="voteValue"
                     class="input is-warning is-fullwidth"

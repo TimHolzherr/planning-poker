@@ -58,7 +58,7 @@ import { BackendService } from "../backend.service";
                 </form>
             </div>
         </div>
-        <div *ngIf="model.hasTickets()">
+        <div class="section" *ngIf="model.hasTickets()">
             <div class="title is-3 has-text-centered">Ticket</div>
             <div class="columns">
                 <div class="box column is-10 is-offset-1">
@@ -117,20 +117,7 @@ import { BackendService } from "../backend.service";
                 </form>
             </div>
         </div>
-    `,
-    styles: [
-        `
-            .footer {
-                position: absolute;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                padding: 1rem;
-                background-color: #efefef;
-                text-align: center;
-            }
-        `
-    ]
+    `
 })
 export class SessionComponent implements OnInit {
     public model = new SessionModel();
