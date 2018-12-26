@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 export class WelcomeComponent {
     constructor(private router: Router) {}
 
-    public sessionName;
+    public sessionName: string;
 
     public CreateNewSession(): void {
         this.router.navigate([this.sessionName]);
