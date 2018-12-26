@@ -59,11 +59,14 @@ import { BackendService } from "../backend.service";
             </div>
         </div>
         <div *ngIf="model.hasTickets()">
-            <div class="box">
-                <app-ticket
-                    [ticket]="model.currentTicket"
-                    [numberOfUsers]="this.model.numberOfUsers"
-                ></app-ticket>
+            <div class="title is-3 has-text-centered">Ticket</div>
+            <div class="columns">
+                <div class="box column is-10 is-offset-1">
+                    <app-ticket
+                        [ticket]="model.currentTicket"
+                        [numberOfUsers]="this.model.numberOfUsers"
+                    ></app-ticket>
+                </div>
             </div>
             <div class="footer">
                 <form (submit)="createNewTicket(nextTicketName)">
@@ -126,10 +129,6 @@ import { BackendService } from "../backend.service";
                 background-color: #efefef;
                 text-align: center;
             }
-            strong {
-                padding: 0;
-                margin: 0;
-            }
         `
     ]
 })
@@ -150,6 +149,7 @@ export class SessionComponent implements OnInit {
 
     ngOnInit() {
         this.model.numberOfUsers = 1;
+        this.model.addNewTicket(new TicketModel("test"));
         this.backendService.linkBackendToModel(this.model);
     }
 

@@ -3,46 +3,30 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 @Component({
     selector: "app-vote-button",
     template: `
-        <input
-            type="button"
-            *ngIf="complexityPoints"
-            class="vote-button"
-            (click)="vote.emit(complexityPoints)"
-            [value]="complexityPoints"
-        />
-
-        <form
-            *ngIf="!complexityPoints"
-            class="vote-button"
-            (submit)="customValueVote()"
-        >
+        <div class="column is-3-tablet is-4-mobile">
             <input
-                name="voteValue"
-                class="vote-value"
-                placeholder="Custom Value"
-                type="number"
-                [(ngModel)]="complexityPointsInput"
+                type="button"
+                *ngIf="complexityPoints"
+                class="button is-fullwidth is-warning"
+                (click)="vote.emit(complexityPoints)"
+                [value]="complexityPoints"
             />
-        </form>
-    `,
-    styles: [
-        `
-            .vote-button {
-                position: relative;
-                background-color: lightyellow;
-                border: 2px solid black;
-                box-shadow: 2px 2px 2px gray;
-            }
-            .vote-value {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                margin: 0;
-                margin-right: -50%;
-                transform: translate(-50%, -50%);
-            }
-        `
-    ]
+
+            <form
+                *ngIf="!complexityPoints"
+                class="is-fullwidth"
+                (submit)="customValueVote()"
+            >
+                <input
+                    name="voteValue"
+                    class="input is-warning is-fullwidth"
+                    placeholder="Custom Value"
+                    type="number"
+                    [(ngModel)]="complexityPointsInput"
+                />
+            </form>
+        </div>
+    `
 })
 export class VoteButtonComponent {
     constructor() {}
