@@ -43,3 +43,7 @@ app-vote-button {
         max-width: 1152px;
     }
 }
+
+.ct-bar {
+    stroke-width: 30px !important;
+}

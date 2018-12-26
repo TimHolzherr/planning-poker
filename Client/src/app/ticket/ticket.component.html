@@ -42,10 +42,8 @@
                             }}.
                         </p>
                     </div>
-                    <div class="has-text-centered" *ngIf="ticket.voteFinished">
-                        <div class="title is-4">Results</div>
-                        <p>All votes: {{ ticket.votes.join(", ") }}</p>
-                        <p>Average: {{ ticket.getAverageVote() }}</p>
+                    <div *ngIf="ticket.voteFinished">
+                        <app-results [ticket]="ticket"></app-results>
                     </div>
                 </div>
             </div>

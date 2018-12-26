@@ -29,4 +29,8 @@ export class TicketModel {
         const sum = this.votes.reduce((a, b) => a + b, 0);
         return sum / this.votes.length;
     }
+
+    public getSortedVote(): number[] {
+        return this.votes.slice().sort((a, b) => a - b);
+    }
 }

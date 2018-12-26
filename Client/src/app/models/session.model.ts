@@ -19,7 +19,8 @@ export class SessionModel {
     }
 
     public setSessionFromDto(dto: SessionDto): void {
-        this.numberOfUsers = dto.numberOfUsers;
+        // We need to add the number of users which joined during the model transfer
+        this.numberOfUsers = dto.numberOfUsers + this.numberOfUsers - 1;
         this.setTickets(dto.tickets);
     }
 

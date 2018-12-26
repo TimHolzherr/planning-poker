@@ -8,6 +8,8 @@ import { WelcomeComponent } from "./welcome/welcome.component";
 import { SessionComponent } from "./session/session.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import { VoteButtonComponent } from "./ticket/vote-button/vote-button.component";
+import { ResultsComponent } from "./ticket/results/results.component";
+import { ChartComponent } from "./ticket/results/chart/chart.component";
 
 @NgModule({
     declarations: [
@@ -15,7 +17,9 @@ import { VoteButtonComponent } from "./ticket/vote-button/vote-button.component"
         WelcomeComponent,
         SessionComponent,
         TicketComponent,
-        VoteButtonComponent
+        VoteButtonComponent,
+        ResultsComponent,
+        ChartComponent
     ],
     imports: [BrowserModule, AppRoutingModule, FormsModule],
     providers: [],
