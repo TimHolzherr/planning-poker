@@ -8,10 +8,8 @@ const distPath = path.join(__dirname, "/dist");
 
 // Serve static files
 app.use(expressStaticGzip(distPath));
-// For client side routing
-app.get("/*", (req, res) => {
-    res.sendFile(distPath + "/index.html.gz");
-});
+// for client side routing serve index.html when no match
+app.use("/*", expressStaticGzip(distPath));
 
 // WebSockets
 io.on("connection", function(socket) {
