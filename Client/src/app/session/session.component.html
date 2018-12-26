@@ -54,51 +54,53 @@
         [numberOfUsers]="this.model.numberOfUsers"
     ></app-ticket>
     <div class="footer">
-        <form (submit)="createNewTicket(nextTicketName)">
-            <div class="level">
-                <div class="level-left">
-                    <input
-                        [disabled]="model.isfirstTicket()"
-                        class="button level-item"
-                        type="button"
-                        value="Previous"
-                        (click)="model.goToPreviousTicket()"
-                    />
-                </div>
-                <div class="level-right">
-                    <div class="field has-addons">
-                        <ng-container *ngIf="model.isLastTicket()">
-                            <p class="control">
-                                <input
-                                    class="input level-item"
-                                    name="nextTicketName"
-                                    required
-                                    placeholder="Name of next ticket"
-                                    [(ngModel)]="nextTicketName"
-                                />
-                            </p>
-                            <p class="control">
-                                <input
-                                    [disabled]="nextTicketName === ''"
-                                    class="button level-item"
-                                    type="submit"
-                                    value="Create new Ticket"
-                                />
-                            </p>
-                        </ng-container>
-                        <ng-container *ngIf="!model.isLastTicket()">
-                            <p class="control">
-                                <input
-                                    class="button level-item"
-                                    type="button"
-                                    value="Next"
-                                    (click)="model.goToNextTicket()"
-                                />
-                            </p>
-                        </ng-container>
+        <div class="container footer-body">
+            <form (submit)="createNewTicket(nextTicketName)">
+                <div class="level">
+                    <div class="level-left">
+                        <input
+                            [disabled]="model.isfirstTicket()"
+                            class="button level-item"
+                            type="button"
+                            value="Previous"
+                            (click)="model.goToPreviousTicket()"
+                        />
+                    </div>
+                    <div class="level-right">
+                        <div class="field has-addons">
+                            <ng-container *ngIf="model.isLastTicket()">
+                                <p class="control">
+                                    <input
+                                        class="input level-item"
+                                        name="nextTicketName"
+                                        required
+                                        placeholder="Name of next ticket"
+                                        [(ngModel)]="nextTicketName"
+                                    />
+                                </p>
+                                <p class="control">
+                                    <input
+                                        [disabled]="nextTicketName === ''"
+                                        class="button level-item"
+                                        type="submit"
+                                        value="Create new Ticket"
+                                    />
+                                </p>
+                            </ng-container>
+                            <ng-container *ngIf="!model.isLastTicket()">
+                                <p class="control">
+                                    <input
+                                        class="button level-item"
+                                        type="button"
+                                        value="Next"
+                                        (click)="model.goToNextTicket()"
+                                    />
+                                </p>
+                            </ng-container>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
