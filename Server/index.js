@@ -4,9 +4,12 @@ var http = require("http").Server(app);
 var path = require("path");
 var io = require("socket.io")(http);
 var expressStaticGzip = require("express-static-gzip");
+var enforce = require("express-sslify");
 const distPath = path.join(__dirname, "/dist");
 
-// Serve static files
+if (process.env.NODE_ENV === "production") {
+    app.use(enforce.HTTPS({ trustProtoHeader: true }));
+}
 app.use(expressStaticGzip(distPath));
 // for client side routing serve index.html when no match
 app.use("/*", expressStaticGzip(distPath));
