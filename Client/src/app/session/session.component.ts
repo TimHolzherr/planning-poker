@@ -149,7 +149,6 @@ export class SessionComponent implements OnInit {
 
     ngOnInit() {
         this.model.numberOfUsers = 1;
-        this.model.addNewTicket(new TicketModel("test"));
         this.backendService.linkBackendToModel(this.model);
     }
 
