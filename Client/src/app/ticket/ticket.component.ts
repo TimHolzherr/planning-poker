@@ -32,7 +32,7 @@ import { BackendService } from "../backend.service";
             </p>
         </div>
         <div class="has-text-centered" *ngIf="ticket.voteFinished">
-            <div class="title is-4">Results</div>
+            <div class="title is-4">Results for ticket {{ ticket.name }}</div>
             <p>All votes: {{ ticket.votes.join(", ") }}</p>
             <p>Average: {{ ticket.getAverageVote() }}</p>
         </div>
