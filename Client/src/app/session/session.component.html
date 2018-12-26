@@ -49,15 +49,10 @@
     </div>
 </div>
 <div class="section" *ngIf="model.hasTickets()">
-    <div class="title is-3 has-text-centered">Ticket</div>
-    <div class="columns">
-        <div class="box column is-10 is-offset-1">
-            <app-ticket
-                [ticket]="model.currentTicket"
-                [numberOfUsers]="this.model.numberOfUsers"
-            ></app-ticket>
-        </div>
-    </div>
+    <app-ticket
+        [ticket]="model.currentTicket"
+        [numberOfUsers]="this.model.numberOfUsers"
+    ></app-ticket>
     <div class="footer">
         <form (submit)="createNewTicket(nextTicketName)">
             <div class="level">
