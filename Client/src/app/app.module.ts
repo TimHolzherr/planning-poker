@@ -1,4 +1,4 @@
-import { BrowserModule } from "@angular/platform-browser";
+import { BrowserModule, Title } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 
@@ -22,7 +22,7 @@ import { ChartComponent } from "./ticket/results/chart/chart.component";
         ChartComponent
     ],
     imports: [BrowserModule, AppRoutingModule, FormsModule],
-    providers: [],
+    providers: [Title],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

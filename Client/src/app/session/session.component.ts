@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { SessionModel } from "../models/session.model";
 import { TicketModel } from "../models/ticket.model";
 import { BackendService } from "../backend.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
     selector: "app-session",
@@ -15,10 +16,12 @@ export class SessionComponent implements OnInit {
 
     constructor(
         public route: ActivatedRoute,
-        private backendService: BackendService
+        private backendService: BackendService,
+        private titleService: Title
     ) {
         this.route.url.subscribe(urlParameters => {
             this.model.name = urlParameters[0].path;
+            this.titleService.setTitle(`Planning-Poker: ${this.model.name}`);
         });
         this.currentUrl = window.location.href;
     }
@@ -29,7 +32,7 @@ export class SessionComponent implements OnInit {
     }
 
     public createNewTicket(name: string): void {
-        if (!name) {
+        if (!name || this.model.tickets.find(t => t.name === name)) {
             return;
         }
         this.model.addNewTicket(new TicketModel(name));
