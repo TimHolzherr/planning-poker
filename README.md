@@ -13,7 +13,7 @@ Overview over the techniques \ technologies behind the application.
 ### Client
 
 -   Single Page application build with [Angular](https://angular.io/)
--   Styling is done with the CSS framework [Bulma](https://bulma.io/)
+-   Styling is done with SCSS and [Bulma](https://bulma.io/)
 -   [Progressive Web App](https://en.wikipedia.org/wiki/Progressive_web_applications) which uses a service worker for caching and can be installed to the home screen on mobile
 -   Uses "naive" server side rendering to decrease perceived load time. The index.html file contains the same markup as the loaded SPA will produce. Once it is loaded the static version is hidden and replaced by the dynamic one.
 
@@ -25,3 +25,7 @@ Overview over the techniques \ technologies behind the application.
 -   No user data is persisted, there is no database involved
 -   Servers the static assets of the single page application **only** over https
 -   The assets are compressed with gzip
+
+## Performance
+
+www.planning-poker.ch reached a performance score of 99/100 on [Lighthouse](https://developers.google.com/web/tools/lighthouse/) and AAA on [webpagetest](https://www.webpagetest.org).
