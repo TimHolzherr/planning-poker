@@ -48,9 +48,8 @@
                             "src/manifest.json"
                         ],
                         "styles": [
-                            "./node_modules/bulma/css/bulma.min.css",
-                            "src/styles.css",
-                            "./node_modules/chartist/dist/chartist.css"
+                            "src/styles.scss",
+                            "./node_modules/chartist/dist/chartist.min.css"
                         ],
                         "scripts": []
                     },
@@ -146,5 +145,10 @@
             }
         }
     },
-    "defaultProject": "planning-poker"
+    "defaultProject": "planning-poker",
+    "schematics": {
+        "@schematics/angular:component": {
+            "styleext": "scss"
+        }
+    }
 }

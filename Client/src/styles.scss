@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+$navbar-height: 0;
+$gap: 150px;
+
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/sass/elements/button.sass";
+@import "../node_modules/bulma/sass/elements/container.sass";
+@import "../node_modules/bulma/sass/elements/content.sass";
+@import "../node_modules/bulma/sass/elements/form.sass";
+@import "../node_modules/bulma/sass/elements/notification.sass";
+@import "../node_modules/bulma/sass/elements/title.sass";
+@import "../node_modules/bulma/sass/layout/_all.sass";
+@import "../node_modules/bulma/sass/grid/_all.sass";
+@import "../node_modules/bulma/sass/components/card.sass";
+@import "../node_modules/bulma/sass/components/level.sass";
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 4.5rem;
+    min-height: 100%;
+}
+
+app-vote-button {
+    display: contents;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    background-color: unset;
+}
+
+.footer-body {
+    padding: 1rem;
+    background-color: #fafafa;
+}
+
+.container {
+    position: unset;
+}
+
+.ct-bar {
+    stroke-width: 30px !important;
+}
+
+svg {
+    fill: currentColor;
+    margin: 0 8px 0 8px;
+}
+
+.field.has-addons {
+    justify-content: flex-end;
+}
