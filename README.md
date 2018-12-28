@@ -1,1 +1,1 @@
-# PlanningPocker
+# Planning-Poker
