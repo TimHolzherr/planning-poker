@@ -3,7 +3,7 @@
 ## Why
 
 Planning-Poker is a web app to facilitate User Story estimation meetings.
-All team members can connect to a planning poker session and vote on the complexity of each ticket. No logging is required and the votes are anonymous. All session state is stored between clients, nothing is persisted to the server.
+All team members can connect to a planning poker session and vote on the complexity of each ticket. No authentication is required and the votes are anonymous. All session state is stored between clients, nothing is persisted to the server.
 Build to work on mobile and desktop.
 
 ## How
