@@ -47,3 +47,8 @@ app-vote-button {
 .ct-bar {
     stroke-width: 30px !important;
 }
+
+svg {
+    fill: currentColor;
+    margin: 0 8px 0 8px;
+}
