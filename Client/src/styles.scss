@@ -68,3 +68,13 @@ svg {
 .field.has-addons {
     justify-content: flex-end;
 }
+
+@media screen and (max-width: $tablet) {
+    body {
+        padding-bottom: 8em;
+    }
+
+    .section {
+        padding: 1rem 1.5rem;
+    }
+}
