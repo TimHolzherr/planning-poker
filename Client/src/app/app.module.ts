@@ -12,6 +12,7 @@ import { ResultsComponent } from "./ticket/results/results.component";
 import { ChartComponent } from "./ticket/results/chart/chart.component";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
+import { ShareComponent } from './session/share/share.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { environment } from "../environments/environment";
         TicketComponent,
         VoteButtonComponent,
         ResultsComponent,
-        ChartComponent
+        ChartComponent,
+        ShareComponent
     ],
     imports: [
         BrowserModule,

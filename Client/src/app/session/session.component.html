@@ -4,15 +4,13 @@
 </div>
 <div class="section">
     <div class="notification has-text-centered is-info">
-        <p>
+        <div>
             {{ model.numberOfUsers }} member{{
                 model.numberOfUsers > 1 ? "s" : ""
             }}
             joined the session.
-        </p>
-        <p>
-            Invite others to join at <a [href]="currentUrl">{{ currentUrl }}</a>
-        </p>
+        </div>
+        <app-share [currentUrl]="currentUrl"></app-share>
     </div>
 </div>
 <div *ngIf="!model.hasTickets()">
