@@ -28,4 +28,4 @@ Overview over the techniques \ technologies behind the application.
 
 ## Performance
 
-www.planning-poker.ch reached a performance score of 99/100 on [Lighthouse](https://developers.google.com/web/tools/lighthouse/) and AAA on [webpagetest](https://www.webpagetest.org).
+www.planning-poker.ch reached a performance score of 100/100 on [Lighthouse](https://developers.google.com/web/tools/lighthouse/) and AAA on [webpagetest](https://www.webpagetest.org).
