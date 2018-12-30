@@ -5,6 +5,10 @@ export class TicketModel {
     voteFinished: boolean;
     yourVote: number;
 
+    get nonNullVotes(): number[] {
+        return this.votes.filter(v => v !== null);
+    }
+
     public voteByOther(vote: number, numberOfPeople: number) {
         this.votes.push(vote);
         this.checkIfVoteFinished(numberOfPeople);
@@ -23,14 +27,14 @@ export class TicketModel {
     }
 
     public getAverageVote(): number {
-        if (this.votes.length == 0) {
+        if (this.nonNullVotes.length == 0) {
             return 0;
         }
-        const sum = this.votes.reduce((a, b) => a + b, 0);
-        return sum / this.votes.length;
+        const sum = this.nonNullVotes.reduce((a, b) => a + b, 0);
+        return sum / this.nonNullVotes.length;
     }
 
     public getSortedVote(): number[] {
-        return this.votes.slice().sort((a, b) => a - b);
+        return this.nonNullVotes.slice().sort((a, b) => a - b);
     }
 }

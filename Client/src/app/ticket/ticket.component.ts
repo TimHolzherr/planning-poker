@@ -19,11 +19,19 @@ export class TicketComponent implements OnInit {
     @Input()
     public numberOfUsers: number;
 
+    get remainingVotes(): number {
+        return this.numberOfUsers - this.ticket.votes.length;
+    }
+
     public vote(vote: number): void {
         this.ticket.voteByMe(vote, this.numberOfUsers);
         this.backendService.vote({
             ticketName: this.ticket.name,
             vote
         });
+    }
+
+    public abstainFromVoting(): void {
+        this.vote(null);
     }
 }

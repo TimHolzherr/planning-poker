@@ -9,7 +9,7 @@ import { IChartistData, IBarChartOptions } from "chartist";
             <div class="title is-4">Results</div>
             <p>All votes: {{ ticket.getSortedVote().join(", ") }}</p>
             <p>Average: {{ ticket.getAverageVote() }}</p>
-            <app-chart [data]="data" [options]="options"> </app-chart>
+            <app-chart [data]="data" [options]="options"></app-chart>
         </div>
     `,
     styles: []
@@ -34,14 +34,14 @@ export class ResultsComponent implements OnInit {
 
     private transformVotesToChartist(): IChartistData {
         var counts = {};
-        this.ticket.votes.forEach(num => {
+        this.ticket.nonNullVotes.forEach(num => {
             counts[num] = counts[num] ? counts[num] + 1 : 1;
         });
         var series = [];
         var labels = [];
         for (
-            var i = Math.min(...this.ticket.votes);
-            i <= Math.max(...this.ticket.votes);
+            var i = Math.min(...this.ticket.nonNullVotes);
+            i <= Math.max(...this.ticket.nonNullVotes);
             i++
         ) {
             labels.push(i);

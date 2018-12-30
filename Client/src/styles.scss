@@ -81,6 +81,16 @@ svg {
     justify-content: flex-end;
 }
 
+.observer-anchor {
+    position: relative;
+}
+
+.observer {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
 @media screen and (max-width: $tablet) {
     body {
         padding-bottom: 8em;
