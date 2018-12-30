@@ -12,7 +12,7 @@ import { ResultsComponent } from "./ticket/results/results.component";
 import { ChartComponent } from "./ticket/results/chart/chart.component";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
-import { ShareComponent } from './session/share/share.component';
+import { ShareComponent } from "./session/share/share.component";
 
 @NgModule({
     declarations: [
@@ -23,17 +23,17 @@ import { ShareComponent } from './session/share/share.component';
         VoteButtonComponent,
         ResultsComponent,
         ChartComponent,
-        ShareComponent
+        ShareComponent,
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
         ServiceWorkerModule.register("ngsw-worker.js", {
-            enabled: environment.production
-        })
+            enabled: environment.production,
+        }),
     ],
     providers: [Title],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

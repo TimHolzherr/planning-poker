@@ -6,16 +6,16 @@ import { SessionComponent } from "./session/session.component";
 const routes: Routes = [
     {
         path: "",
-        component: WelcomeComponent
+        component: WelcomeComponent,
     },
     {
         path: "**",
-        component: SessionComponent
-    }
+        component: SessionComponent,
+    },
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class AppRoutingModule {}

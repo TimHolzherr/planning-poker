@@ -3,7 +3,7 @@ import { Bar, IChartistData, IBarChartOptions } from "chartist";
 
 @Component({
     selector: "app-chart",
-    template: "<ng-content></ng-content>"
+    template: "<ng-content></ng-content>",
 })
 export class ChartComponent implements OnInit {
     constructor(private element: ElementRef) {}

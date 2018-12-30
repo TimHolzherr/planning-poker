@@ -31,9 +31,9 @@ export class SessionModel {
                 return {
                     name: t.name,
                     votes: t.votes,
-                    voteFinished: t.voteFinished
+                    voteFinished: t.voteFinished,
                 };
-            })
+            }),
         };
     }
 

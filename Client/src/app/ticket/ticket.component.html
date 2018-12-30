@@ -1,55 +1,49 @@
 <div class="content">
-    <div class="columns">
-        <div class="column is-10 is-offset-1">
-            <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title is-block has-text-centered">
-                        Ticket:
-                        <span class="is-uppercase">{{ ticket.name }}</span>
-                    </p>
-                </header>
-                <div class="card-content observer-anchor">
-                    <button
-                        *ngIf="!ticket.hasVoted && numberOfUsers > 2"
-                        (click)="abstainFromVoting()"
-                        class="observer button is-small is-success is-outlined"
-                    >
-                        Abstain from voting
-                    </button>
-                    <ng-container
-                        *ngIf="!ticket.hasVoted && !ticket.voteFinished"
-                    >
-                        <div class="title is-4 has-text-centered">
-                            <p>Please vote</p>
-                        </div>
-                        <div class="columns is-multiline is-mobile">
-                            <app-vote-button
-                                *ngFor="let cp of complexityPoints"
-                                [complexityPoints]="cp"
-                                (vote)="vote($event)"
-                            ></app-vote-button>
-                            <app-vote-button
-                                (vote)="vote($event)"
-                            ></app-vote-button>
-                        </div>
-                    </ng-container>
-                    <div *ngIf="ticket.hasVoted && !ticket.voteFinished">
-                        <p class="has-text-centered">
-                            <span *ngIf="ticket.yourVote">
-                                You voted
-                                <strong>{{ ticket.yourVote }}</strong>
-                                ,
-                            </span>
-                            waiting for
-                            <strong>{{ remainingVotes }}</strong>
-                            other vote{{ remainingVotes > 1 ? "s" : "" }}.
-                        </p>
-                    </div>
-                    <div *ngIf="ticket.voteFinished">
-                        <app-results [ticket]="ticket"></app-results>
-                    </div>
-                </div>
+  <div class="columns">
+    <div class="column is-10 is-offset-1">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title is-block has-text-centered">
+            Ticket:
+            <span class="is-uppercase">{{ ticket.name }}</span>
+          </p>
+        </header>
+        <div class="card-content observer-anchor">
+          <button
+            *ngIf="!ticket.hasVoted && numberOfUsers > 2"
+            (click)="abstainFromVoting()"
+            class="observer button is-small is-success is-outlined"
+          >
+            Abstain from voting
+          </button>
+          <ng-container *ngIf="!ticket.hasVoted && !ticket.voteFinished">
+            <div class="title is-4 has-text-centered"><p>Please vote</p></div>
+            <div class="columns is-multiline is-mobile">
+              <app-vote-button
+                *ngFor="let cp of complexityPoints"
+                [complexityPoints]="cp"
+                (vote)="vote($event)"
+              ></app-vote-button>
+              <app-vote-button (vote)="vote($event)"></app-vote-button>
             </div>
+          </ng-container>
+          <div *ngIf="ticket.hasVoted && !ticket.voteFinished">
+            <p class="has-text-centered">
+              <span *ngIf="ticket.yourVote">
+                You voted
+                <strong>{{ ticket.yourVote }}</strong>
+                ,
+              </span>
+              waiting for
+              <strong>{{ remainingVotes }}</strong>
+              other vote{{ remainingVotes > 1 ? "s" : "" }}.
+            </p>
+          </div>
+          <div *ngIf="ticket.voteFinished">
+            <app-results [ticket]="ticket"></app-results>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

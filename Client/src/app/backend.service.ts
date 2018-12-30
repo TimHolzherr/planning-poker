@@ -6,7 +6,7 @@ import {
     MessageType,
     MessageBody,
     VoteMessage,
-    SendModelMessage
+    SendModelMessage,
 } from "./models/messages.model";
 import { TicketModel } from "./models/ticket.model";
 import { environment } from "src/environments/environment";
@@ -15,7 +15,7 @@ const messageToOthers = "message to others";
 const sendModel = "send model";
 
 @Injectable({
-    providedIn: "root"
+    providedIn: "root",
 })
 export class BackendService {
     private socket: SocketIOClient.Socket;
@@ -25,7 +25,7 @@ export class BackendService {
         this.model = model;
         environment.backendServer;
         this.socket = io(environment.backendServer, {
-            query: `room=${model.name}`
+            query: `room=${model.name}`,
         });
 
         this.socket.on(messageToOthers, data => {
@@ -56,14 +56,14 @@ export class BackendService {
     public addNewTicket(newTicket: NewTicketMessage): void {
         this.sendMessageToOthers({
             type: MessageType.NewTicket,
-            payload: newTicket
+            payload: newTicket,
         });
     }
 
     public vote(voteMessage: VoteMessage) {
         this.sendMessageToOthers({
             type: MessageType.Vote,
-            payload: voteMessage
+            payload: voteMessage,
         });
     }
 
@@ -75,7 +75,7 @@ export class BackendService {
         console.log("send model to", id);
         const payload: SendModelMessage = {
             session: this.model.asDto(),
-            id: id
+            id: id,
         };
         this.socket.emit(sendModel, payload);
     }

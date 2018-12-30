@@ -5,7 +5,7 @@ export interface MessageBody {
 
 export enum MessageType {
     Vote,
-    NewTicket
+    NewTicket,
 }
 
 export interface VoteMessage {

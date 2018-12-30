@@ -7,7 +7,7 @@ import { Title } from "@angular/platform-browser";
 
 @Component({
     selector: "app-session",
-    templateUrl: "./session.component.html"
+    templateUrl: "./session.component.html",
 })
 export class SessionComponent implements OnInit {
     public model = new SessionModel();

@@ -12,7 +12,7 @@ import { IChartistData, IBarChartOptions } from "chartist";
             <app-chart [data]="data" [options]="options"></app-chart>
         </div>
     `,
-    styles: []
+    styles: [],
 })
 export class ResultsComponent implements OnInit {
     @Input() ticket: TicketModel;
@@ -24,11 +24,11 @@ export class ResultsComponent implements OnInit {
         this.data = this.transformVotesToChartist();
         this.options = {
             axisX: {
-                onlyInteger: true
+                onlyInteger: true,
             },
             axisY: {
-                onlyInteger: true
-            }
+                onlyInteger: true,
+            },
         };
     }
 
@@ -49,7 +49,7 @@ export class ResultsComponent implements OnInit {
         }
         return {
             labels: labels,
-            series: [series]
+            series: [series],
         };
     }
 }

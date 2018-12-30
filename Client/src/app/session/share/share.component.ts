@@ -35,7 +35,7 @@ c-32.6,0-59.1-26.5-59.1-59.1c0-32.6,26.5-59.1,59.1-59.1s59.1,26.5,59.1,59.1C440.
                 </g>
             </svg>
         </div>
-    `
+    `,
 })
 export class ShareComponent implements OnInit {
     @Input()
@@ -56,7 +56,7 @@ export class ShareComponent implements OnInit {
             navigator["share"]({
                 title: "Planning-Poker",
                 text: "Join my session on Planning-Poker!",
-                url: this.currentUrl
+                url: this.currentUrl,
             });
         } else {
             let selBox = document.createElement("textarea");

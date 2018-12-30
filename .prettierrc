@@ -1,0 +1,12 @@
+{
+    "trailingComma": "es5",
+    "overrides": [
+        {
+            "files": "*.html",
+            "options": {
+                "tabWidth": 2,
+                "htmlWhitespaceSensitivity": "ignore"
+            }
+        }
+    ]
+}

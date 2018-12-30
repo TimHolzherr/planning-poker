@@ -22,7 +22,7 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
                 />
             </form>
         </div>
-    `
+    `,
 })
 export class VoteButtonComponent {
     constructor() {}

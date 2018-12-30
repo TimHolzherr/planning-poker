@@ -4,7 +4,7 @@ import { BackendService } from "../backend.service";
 
 @Component({
     selector: "app-ticket",
-    templateUrl: "./ticket.component.html"
+    templateUrl: "./ticket.component.html",
 })
 export class TicketComponent implements OnInit {
     constructor(private backendService: BackendService) {}
@@ -27,7 +27,7 @@ export class TicketComponent implements OnInit {
         this.ticket.voteByMe(vote, this.numberOfUsers);
         this.backendService.vote({
             ticketName: this.ticket.name,
-            vote
+            vote,
         });
     }
 
