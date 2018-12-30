@@ -5,7 +5,9 @@ import { Component, OnInit, Input } from "@angular/core";
     template: `
         <p *ngIf="!canShare">
             Invite others to join at
-            <a (click)="inviteOthers()">{{ currentUrl }}</a>
+            <a title="Copy to clipboard" (click)="inviteOthers()">{{
+                currentUrlFormatted
+            }}</a>
         </p>
         <div (click)="inviteOthers()" *ngIf="canShare">
             <a>Invite others to join</a>
@@ -41,6 +43,15 @@ export class ShareComponent implements OnInit {
     @Input()
     currentUrl: string;
 
+    get currentUrlFormatted(): string {
+        const decoded = decodeURI(this.currentUrl);
+        var spitted = decoded.split("https://");
+        if (spitted.length === 2) {
+            return spitted[1];
+        }
+        return decoded;
+    }
+
     public canShare = false;
 
     public ngOnInit(): void {
@@ -70,7 +81,7 @@ export class ShareComponent implements OnInit {
             selBox.select();
             document.execCommand("copy");
             document.body.removeChild(selBox);
-            alert(`Copied "${this.currentUrl}" to clipboard`);
+            alert(`Copied "${this.currentUrlFormatted}" to clipboard`);
         }
     }
 }
