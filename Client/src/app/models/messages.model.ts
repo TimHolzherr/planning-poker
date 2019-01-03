@@ -1,5 +1,6 @@
 export interface MessageBody {
     type: MessageType;
+    clientId: string;
     payload: VoteMessage | NewTicketMessage;
 }
 

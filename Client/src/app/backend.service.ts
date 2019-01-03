@@ -10,6 +10,7 @@ import {
 } from "./models/messages.model";
 import { TicketModel } from "./models/ticket.model";
 import { environment } from "src/environments/environment";
+import { guid } from "./guid";
 
 const messageToOthers = "message to others";
 const sendModel = "send model";
@@ -20,12 +21,13 @@ const sendModel = "send model";
 export class BackendService {
     private socket: SocketIOClient.Socket;
     private model: SessionModel;
+    private clientId: string = guid();
 
     public linkBackendToModel(model: SessionModel): void {
         this.model = model;
         environment.backendServer;
         this.socket = io(environment.backendServer, {
-            query: `room=${model.name}`,
+            query: `room=${model.name}&clientId=${this.clientId}`,
         });
 
         this.socket.on(messageToOthers, data => {
@@ -57,6 +59,7 @@ export class BackendService {
         this.sendMessageToOthers({
             type: MessageType.NewTicket,
             payload: newTicket,
+            clientId: this.clientId,
         });
     }
 
@@ -64,6 +67,7 @@ export class BackendService {
         this.sendMessageToOthers({
             type: MessageType.Vote,
             payload: voteMessage,
+            clientId: this.clientId,
         });
     }
 

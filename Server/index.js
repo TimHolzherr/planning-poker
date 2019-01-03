@@ -17,33 +17,35 @@ app.use("/*", expressStaticGzip(distPath));
 // WebSockets
 io.on("connection", function(socket) {
     const room = socket.handshake.query.room;
-    const id = { id: socket.id };
-    console.log("connection", id, room);
+    const clientId = { id: socket.handshake.query.clientId };
+    console.log("connection", clientId, room);
     socket.join(room);
-    socket.to(room).broadcast.emit("user connected", id);
+    socket.to(room).broadcast.emit("user connected", clientId);
 
     socket.on("message to others", data => {
-        console.log("message to others", id, data);
-        socket.to(room).broadcast.emit("message to others", { ...data, ...id });
+        console.log("message to others", clientId, data);
+        socket
+            .to(room)
+            .broadcast.emit("message to others", { ...data, ...clientId });
     });
 
     socket.on("send model", data => {
-        socket.to(data.id).emit("send model", { ...data, ...id });
+        socket.to(data.id).emit("send model", { ...data, ...clientId });
     });
 
     socket.on("disconnect", function() {
-        console.log("disconnect", id, room);
-        socket.to(room).broadcast.emit("user disconnected", id);
+        console.log("disconnect", clientId, room);
+        socket.to(room).broadcast.emit("user disconnected", clientId);
     });
 
     socket.on("error", error => {
-        console.log("Error", id, error);
+        console.log("Error", clientId, error);
     });
 
     if (io.sockets.adapter.rooms[room]) {
         const ids = Object.keys(io.sockets.adapter.rooms[room].sockets);
         if (ids.length > 0) {
-            socket.to(ids[0]).emit("ask for model", id);
+            socket.to(ids[0]).emit("ask for model", { id: socket.id });
         }
     }
 });
