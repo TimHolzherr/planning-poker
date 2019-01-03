@@ -17,25 +17,26 @@ app.use("/*", expressStaticGzip(distPath));
 // WebSockets
 io.on("connection", function(socket) {
     const room = socket.handshake.query.room;
+    const id = { id: socket.id };
     socket.join(room);
-    socket.to(room).broadcast.emit("user connected");
+    socket.to(room).broadcast.emit("user connected", id);
 
     socket.on("message to others", data => {
-        socket.to(room).broadcast.emit("message to others", data);
+        socket.to(room).broadcast.emit("message to others", { ...data, ...id });
     });
 
     socket.on("send model", data => {
-        socket.to(data.id).emit("send model", data);
+        socket.to(data.id).emit("send model", { ...data, ...id });
     });
 
     socket.on("disconnect", function() {
-        socket.to(room).broadcast.emit("user disconnected");
+        socket.to(room).broadcast.emit("user disconnected", id);
     });
 
     if (io.sockets.adapter.rooms[room]) {
         const ids = Object.keys(io.sockets.adapter.rooms[room].sockets);
         if (ids.length > 0) {
-            socket.to(ids[0]).emit("ask for model", { id: socket.id });
+            socket.to(ids[0]).emit("ask for model", id);
         }
     }
 });
