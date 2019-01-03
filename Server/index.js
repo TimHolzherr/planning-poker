@@ -18,10 +18,12 @@ app.use("/*", expressStaticGzip(distPath));
 io.on("connection", function(socket) {
     const room = socket.handshake.query.room;
     const id = { id: socket.id };
+    console.log("connection", id, room);
     socket.join(room);
     socket.to(room).broadcast.emit("user connected", id);
 
     socket.on("message to others", data => {
+        console.log("message to others", id, data);
         socket.to(room).broadcast.emit("message to others", { ...data, ...id });
     });
 
@@ -30,7 +32,12 @@ io.on("connection", function(socket) {
     });
 
     socket.on("disconnect", function() {
+        console.log("disconnect", id, room);
         socket.to(room).broadcast.emit("user disconnected", id);
+    });
+
+    socket.on("error", error => {
+        console.log("Error", id, error);
     });
 
     if (io.sockets.adapter.rooms[room]) {
