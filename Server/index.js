@@ -24,13 +24,11 @@ io.on("connection", function(socket) {
 
     socket.on("message to others", data => {
         console.log("message to others", clientId, data);
-        socket
-            .to(room)
-            .broadcast.emit("message to others", { ...data, ...clientId });
+        socket.to(room).broadcast.emit("message to others", data);
     });
 
     socket.on("send model", data => {
-        socket.to(data.id).emit("send model", { ...data, ...clientId });
+        socket.to(data.id).emit("send model", data);
     });
 
     socket.on("disconnect", function() {
