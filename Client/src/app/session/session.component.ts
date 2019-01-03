@@ -27,7 +27,6 @@ export class SessionComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.model.numberOfUsers = 1;
         this.backendService.linkBackendToModel(this.model);
     }
 

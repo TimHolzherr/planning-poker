@@ -25,6 +25,7 @@ export class BackendService {
 
     public linkBackendToModel(model: SessionModel): void {
         this.model = model;
+        this.model.addUser(this.clientId);
         environment.backendServer;
         this.socket = io(environment.backendServer, {
             query: `room=${model.name}&clientId=${this.clientId}`,
@@ -34,13 +35,13 @@ export class BackendService {
             this.processMessage(data);
         });
 
-        this.socket.on("user connected", () => {
+        this.socket.on("user connected", ({ clientId }) => {
             console.log("user connected");
-            this.model.numberOfUsers++;
+            this.model.addUser(clientId);
         });
 
-        this.socket.on("user disconnected", () => {
-            this.model.numberOfUsers--;
+        this.socket.on("user disconnected", ({ clientId }) => {
+            this.model.removeUser(clientId);
             this.model.tickets.forEach(t =>
                 t.checkIfVoteFinished(this.model.numberOfUsers)
             );

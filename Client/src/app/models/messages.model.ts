@@ -24,7 +24,7 @@ export interface SendModelMessage {
 }
 
 export interface SessionDto {
-    numberOfUsers: number;
+    users: string[];
     tickets: TicketDto[];
 }
 

@@ -17,7 +17,7 @@ app.use("/*", expressStaticGzip(distPath));
 // WebSockets
 io.on("connection", function(socket) {
     const room = socket.handshake.query.room;
-    const clientId = { id: socket.handshake.query.clientId };
+    const clientId = { clientId: socket.handshake.query.clientId };
     console.log("connection", clientId, room);
     socket.join(room);
     socket.to(room).broadcast.emit("user connected", clientId);
@@ -28,6 +28,7 @@ io.on("connection", function(socket) {
     });
 
     socket.on("send model", data => {
+        console.log("send model", data);
         socket.to(data.id).emit("send model", data);
     });
 

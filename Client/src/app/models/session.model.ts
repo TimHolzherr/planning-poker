@@ -2,12 +2,16 @@ import { TicketModel } from "./ticket.model";
 import { TicketDto, SessionDto } from "./messages.model";
 
 export class SessionModel {
-    numberOfUsers = 0;
+    get numberOfUsers(): number {
+        return this.users.size;
+    }
     name: string;
     tickets: TicketModel[] = [];
     currentTicket: TicketModel;
     IsInitialCreator = false;
     IsObserver = false;
+    private users = new Set();
+    private removedUsers = new Set();
 
     public addNewTicket(ticket: TicketModel): void {
         this.tickets.push(ticket);
@@ -19,14 +23,15 @@ export class SessionModel {
     }
 
     public setSessionFromDto(dto: SessionDto): void {
-        // We need to add the number of users which joined during the model transfer
-        this.numberOfUsers = dto.numberOfUsers + this.numberOfUsers - 1;
+        dto.users
+            .filter(u => !this.removedUsers.has(u))
+            .forEach(u => this.users.add(u));
         this.setTickets(dto.tickets);
     }
 
     public asDto(): SessionDto {
         return {
-            numberOfUsers: this.numberOfUsers,
+            users: Array.from(this.users),
             tickets: this.tickets.map(t => {
                 return {
                     name: t.name,
@@ -35,6 +40,15 @@ export class SessionModel {
                 };
             }),
         };
+    }
+
+    public addUser(user: string): void {
+        this.users.add(user);
+    }
+
+    public removeUser(user: string): void {
+        this.users.delete(user);
+        this.removedUsers.add(user);
     }
 
     private setTickets(tickets: TicketDto[]) {
