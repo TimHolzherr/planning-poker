@@ -30,7 +30,11 @@ export class VoteButtonComponent {
     public complexityPointsInput: number;
 
     public customValueVote(): void {
-        if (this.complexityPointsInput) {
+        if (
+            this.complexityPointsInput &&
+            Number.isSafeInteger(this.complexityPointsInput) &&
+            this.complexityPointsInput > 0
+        ) {
             this.vote.emit(this.complexityPointsInput);
         }
     }
