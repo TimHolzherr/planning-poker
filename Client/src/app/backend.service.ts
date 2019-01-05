@@ -10,7 +10,6 @@ import {
 } from "./models/messages.model";
 import { TicketModel } from "./models/ticket.model";
 import { environment } from "src/environments/environment";
-import { v4 } from "uuid";
 
 const messageToOthers = "message to others";
 const sendModel = "send model";
@@ -21,7 +20,7 @@ const sendModel = "send model";
 export class BackendService {
     private socket: SocketIOClient.Socket;
     private model: SessionModel;
-    private clientId: string = v4();
+    private clientId: string = Math.floor(10000000 * Math.random()).toString();
 
     public linkBackendToModel(model: SessionModel): void {
         this.model = model;
