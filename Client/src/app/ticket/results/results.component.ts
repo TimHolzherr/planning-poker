@@ -8,7 +8,7 @@ import { IChartistData, IBarChartOptions } from "chartist";
         <div class="has-text-centered">
             <div class="title is-4">Results</div>
             <p>All votes: {{ ticket.getSortedVote().join(", ") }}</p>
-            <p>Average: {{ ticket.getAverageVote() }}</p>
+            <p>Average: {{ ticket.getAverageVote() | number: "1.0-2" }}</p>
             <app-chart [data]="data" [options]="options"></app-chart>
         </div>
     `,
