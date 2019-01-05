@@ -68,10 +68,6 @@ app-vote-button {
     position: unset;
 }
 
-.ct-bar {
-    stroke-width: 30px !important;
-}
-
 svg {
     fill: currentColor;
     margin: 0 8px 0 8px;
@@ -98,5 +94,11 @@ svg {
 
     .section {
         padding: 1rem 1.5rem;
+    }
+}
+
+@media screen and (min-width: $tablet) {
+    .ct-bar {
+        stroke-width: 30px !important;
     }
 }
