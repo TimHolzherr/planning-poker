@@ -13,13 +13,25 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
         </div>
         <div *ngIf="!complexityPoints" class="column is-3-tablet is-8-mobile">
             <form class="is-fullwidth" (submit)="customValueVote()">
-                <input
-                    name="voteValue"
-                    class="input is-warning is-fullwidth"
-                    placeholder="Custom Value"
-                    type="number"
-                    [(ngModel)]="complexityPointsInput"
-                />
+                <div class="field has-addons is-fullwidth">
+                    <div class="control is-fullwidth">
+                        <input
+                            name="voteValue"
+                            class="input is-warning is-fullwidth"
+                            placeholder="Custom Value"
+                            type="number"
+                            [(ngModel)]="complexityPointsInput"
+                        />
+                    </div>
+                    <div class="control">
+                        <button
+                            class="button is-success"
+                            type="submit"
+                            value="Submit"
+                            [innerHTML]="asciiCheckMark"
+                        ></button>
+                    </div>
+                </div>
             </form>
         </div>
     `,
@@ -28,6 +40,8 @@ export class VoteButtonComponent {
     constructor() {}
 
     public complexityPointsInput: number;
+
+    public asciiCheckMark = "&#x2714";
 
     public customValueVote(): void {
         if (
