@@ -28,6 +28,7 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
                             class="button is-success"
                             type="submit"
                             value="Submit"
+                            [disabled]="!isValidVote()"
                             [innerHTML]="asciiCheckMark"
                         ></button>
                     </div>
@@ -44,11 +45,7 @@ export class VoteButtonComponent {
     public asciiCheckMark = "&#x2714";
 
     public customValueVote(): void {
-        if (
-            this.complexityPointsInput &&
-            Number.isSafeInteger(this.complexityPointsInput) &&
-            this.complexityPointsInput > 0
-        ) {
+        if (this.isValidVote()) {
             this.vote.emit(this.complexityPointsInput);
         }
     }
@@ -58,4 +55,12 @@ export class VoteButtonComponent {
 
     @Output()
     public vote: EventEmitter<number> = new EventEmitter();
+
+    public isValidVote() {
+        return (
+            this.complexityPointsInput &&
+            Number.isSafeInteger(this.complexityPointsInput) &&
+            this.complexityPointsInput > 0
+        );
+    }
 }
