@@ -38,6 +38,13 @@
               <strong>{{ remainingVotes }}</strong>
               other vote{{ remainingVotes > 1 ? "s" : "" }}.
             </p>
+            <button
+              *ngIf="numberOfUsers > 2"
+              class="button is-danger is-outlined is-small bottom-right"
+              (click)="endVotePrematurly()"
+            >
+              End vote prematurely
+            </button>
           </div>
           <div *ngIf="ticket.voteFinished">
             <app-results [ticket]="ticket"></app-results>

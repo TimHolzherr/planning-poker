@@ -34,4 +34,8 @@ export class TicketComponent implements OnInit {
     public abstainFromVoting(): void {
         this.vote(null);
     }
+
+    public endVotePrematurly(): void {
+        this.ticket.voteFinished = true;
+    }
 }

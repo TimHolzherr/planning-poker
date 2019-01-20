@@ -81,6 +81,12 @@ div.is-fullwidth {
     width: 100%;
 }
 
+.bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 .observer-anchor {
     position: relative;
 }
