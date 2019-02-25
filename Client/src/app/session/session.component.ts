@@ -4,6 +4,7 @@ import { SessionModel } from "../models/session.model";
 import { TicketModel } from "../models/ticket.model";
 import { BackendService } from "../backend.service";
 import { Title } from "@angular/platform-browser";
+import { ColorService } from "../ticket/color/color.service";
 
 @Component({
     selector: "app-session",
@@ -16,7 +17,8 @@ export class SessionComponent implements OnInit {
     constructor(
         public route: ActivatedRoute,
         private backendService: BackendService,
-        private titleService: Title
+        private titleService: Title,
+        private colorService: ColorService
     ) {
         this.route.url.subscribe(urlParameters => {
             this.model.name = urlParameters[0].path;
@@ -33,7 +35,8 @@ export class SessionComponent implements OnInit {
         if (!name || this.model.tickets.find(t => t.name === name)) {
             return;
         }
-        this.model.addNewTicket(new TicketModel(name));
-        this.backendService.addNewTicket({ ticketName: name });
+        var color = this.colorService.nextRandomColor();
+        this.model.addNewTicket(new TicketModel(name, color));
+        this.backendService.addNewTicket({ ticketName: name, color: color });
     }
 }

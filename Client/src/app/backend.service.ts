@@ -103,7 +103,10 @@ export class BackendService {
 
     private processNewTicket(body: MessageBody) {
         if (body.type === MessageType.NewTicket) {
-            this.model.addNewTicket(new TicketModel(body.payload.ticketName));
+            const payload = body.payload as NewTicketMessage;
+            this.model.addNewTicket(
+                new TicketModel(payload.ticketName, payload.color)
+            );
         }
     }
 

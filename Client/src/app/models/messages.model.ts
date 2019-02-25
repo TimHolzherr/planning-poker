@@ -16,6 +16,7 @@ export interface VoteMessage {
 
 export interface NewTicketMessage {
     ticketName: string;
+    color: string;
 }
 
 export interface SendModelMessage {
@@ -30,6 +31,7 @@ export interface SessionDto {
 
 export interface TicketDto {
     name: string;
+    color: string;
     votes: number[];
     voteFinished: boolean;
 }

@@ -6,7 +6,7 @@ export class SessionModel {
         return this.users.size;
     }
     name: string;
-    nextTicketName: string;
+    nextTicketName = "";
     tickets: TicketModel[] = [];
     currentTicket: TicketModel;
     IsInitialCreator = false;
@@ -38,6 +38,7 @@ export class SessionModel {
                 return {
                     name: t.name,
                     votes: t.votes,
+                    color: t.color,
                     voteFinished: t.voteFinished,
                 };
             }),
@@ -55,7 +56,7 @@ export class SessionModel {
 
     private setTickets(tickets: TicketDto[]) {
         this.tickets = tickets.map(dto => {
-            var newTicket = new TicketModel(dto.name);
+            var newTicket = new TicketModel(dto.name, dto.color);
             newTicket.voteFinished = dto.voteFinished;
             newTicket.votes = dto.votes;
             return newTicket;

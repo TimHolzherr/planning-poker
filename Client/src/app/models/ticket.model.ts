@@ -1,5 +1,5 @@
 export class TicketModel {
-    constructor(public name: string) {}
+    constructor(public name: string, public color: string) {}
     hasVoted: boolean;
     votes: number[] = [];
     voteFinished: boolean;

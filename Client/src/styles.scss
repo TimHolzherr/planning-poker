@@ -101,6 +101,14 @@ svg.ct-chart-bar {
     margin-left: -1em;
 }
 
+.card-content {
+    background: rgba(254, 254, 254, 0.75);
+}
+
+.card-header {
+    box-shadow: 0 3px 0px rgba(10, 10, 10, 0.5);
+}
+
 @media screen and (max-width: $tablet) {
     body {
         padding-bottom: 8em;
