@@ -11,7 +11,6 @@ import { Title } from "@angular/platform-browser";
 })
 export class SessionComponent implements OnInit {
     public model = new SessionModel();
-    public nextTicketName = "";
     public currentUrl: string;
 
     constructor(
@@ -35,7 +34,6 @@ export class SessionComponent implements OnInit {
             return;
         }
         this.model.addNewTicket(new TicketModel(name));
-        this.nextTicketName = "";
         this.backendService.addNewTicket({ ticketName: name });
     }
 }

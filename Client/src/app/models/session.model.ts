@@ -6,6 +6,7 @@ export class SessionModel {
         return this.users.size;
     }
     name: string;
+    nextTicketName: string;
     tickets: TicketModel[] = [];
     currentTicket: TicketModel;
     IsInitialCreator = false;
@@ -16,6 +17,7 @@ export class SessionModel {
     public addNewTicket(ticket: TicketModel): void {
         this.tickets.push(ticket);
         this.currentTicket = ticket;
+        this.nextTicketName = "";
     }
 
     public hasTickets(): boolean {
