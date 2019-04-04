@@ -27,7 +27,9 @@ export class BackendService {
         this.model.addUser(this.clientId);
         environment.backendServer;
         this.socket = io(environment.backendServer, {
-            query: `room=${model.name}&clientId=${this.clientId}`,
+            query: `room=${this.normalizeRoom(model.name)}&clientId=${
+                this.clientId
+            }`,
         });
 
         this.socket.on(messageToOthers, data => {
@@ -113,5 +115,12 @@ export class BackendService {
     private setModel(data: SendModelMessage): void {
         console.log("setModel", data);
         this.model.setSessionFromDto(data.session);
+    }
+
+    /**
+     * room identifier is the lower case session name without space
+     */
+    private normalizeRoom(sessionName: string): string {
+        return sessionName.toLowerCase().replace(/\s/g, "");
     }
 }
