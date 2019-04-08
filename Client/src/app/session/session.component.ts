@@ -32,11 +32,15 @@ export class SessionComponent implements OnInit {
     }
 
     public createNewTicket(name: string): void {
-        if (!name || this.model.tickets.find(t => t.name === name)) {
+        if (!this.canAddTicket(name)) {
             return;
         }
         var color = this.colorService.nextRandomColor();
         this.model.addNewTicket(new TicketModel(name, color));
         this.backendService.addNewTicket({ ticketName: name, color: color });
+    }
+
+    public canAddTicket(name: string): boolean {
+        return !(!name || this.model.tickets.find(t => t.name === name));
     }
 }
