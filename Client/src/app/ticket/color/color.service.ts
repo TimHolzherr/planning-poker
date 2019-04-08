@@ -25,7 +25,7 @@ export class ColorService {
     }
 
     private getLightness(): string {
-        return "95%";
+        return "88%";
     }
 
     // Uses golden ratio to ensure that colors are evenly spread
