@@ -1,7 +1,11 @@
 <div class="content">
   <div class="columns">
     <div class="column is-10 is-offset-1">
-      <div class="card" [style.background-color]="ticket.color">
+      <div
+        class="card"
+        [style.background-color]="ticket.color"
+        [@fadeIn]="animationChanged"
+      >
         <header class="card-header">
           <p class="card-header-title is-block has-text-centered">
             Ticket:

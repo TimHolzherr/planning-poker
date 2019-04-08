@@ -1,4 +1,5 @@
 import { BrowserModule, Title } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 
@@ -27,6 +28,7 @@ import { ShareComponent } from "./session/share/share.component";
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         AppRoutingModule,
         FormsModule,
         ServiceWorkerModule.register("ngsw-worker.js", {
