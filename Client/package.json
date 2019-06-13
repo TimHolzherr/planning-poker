@@ -17,7 +17,7 @@
         "@angular/http": "^6.1.0",
         "@angular/platform-browser": "^6.1.0",
         "@angular/platform-browser-dynamic": "^6.1.0",
-        "@angular/pwa": "^0.8.8",
+        "@angular/pwa": "^0.800.2",
         "@angular/router": "^6.1.0",
         "@angular/service-worker": "^6.1.0",
         "@types/socket.io-client": "^1.4.32",
@@ -29,7 +29,7 @@
         "zone.js": "~0.8.26"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "~0.8.0",
+        "@angular-devkit/build-angular": "^0.800.2",
         "@angular/cli": "~6.2.8",
         "@angular/compiler-cli": "^6.1.0",
         "@angular/language-service": "^6.1.0",
